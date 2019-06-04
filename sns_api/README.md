@@ -1,24 +1,18 @@
-# README
+# sns サーバー仕様書
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## DBスキーマ
+| users |      |          |
+| :---- | :--- | :------- |
+| id    | name | password |
 
-Things you may want to cover:
+| follow_users |         |           |
+| :----------- | :------ | :-------- |
+| id           | user_id | follow_id |
 
-* Ruby version
+| user_tweets |         |       |
+| :---------- | :------ | :---- |
+| id          | user_id | tweet |
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| message_to_user |         |              |         |
+| :-------------- | :------ | :----------- | :------ |
+| id              | user_id | sent_user_id | message |
