@@ -18,14 +18,16 @@
 | id                | user_id | sent_user_id | message |
 
 ## エンドポイント
- | メソッド | エンドポイント | 補足                                             |
- | :------- | :------------- | :----------------------------------------------- |
- | GET      | /user:id       | ユーザーの情報を取得とダイレクトメッセージの取得 |
- | POST     | /user          | ユーザーの情報を登録                             |
- | POST     | /user:id       | ユーザーをフォロー                               |
- | GET      | /tweet:id      | フォローしているユーザーのツイートの表示         |
- | POST     | /tweet         | ツイートの投稿                                   |
- | POST     | /user:id       | ユーザーにダイレクトメッセージ                   |
+ | メソッド | エンドポイント       | 補足                                           |
+ | :------- | :------------------- | :--------------------------------------------- |
+ | GET      | /user/follow:user_id | フォローしているユーザーの情報を取得           |
+ | GET      | /user:id             | 自分の情報を取得                               |
+ | POST     | /user                | ユーザーの情報を登録                           |
+ | POST     | /user:id             | ユーザーにダイレクトメッセージ                 |
+ | POST     | /follow/user:id      | ユーザーをフォロー                             |
+ | GET      | /tweet/follow:id     | 自分がフォローしているユーザーのツイートの表示 |
+ | POST     | /tweet               | ツイートの投稿                                 |
+ 
 
  ## 返却データ
 ### /user:id
@@ -47,7 +49,24 @@
 }
 ```
 
-### /tweet:id
+### /user/follow:user_id
+```
+{
+    id: 1,
+    name: hoge,
+    follow_users:[
+        {
+            id: 2,
+            name: hoge
+        }, {
+            id: 2,
+            name: hoge
+        }
+    ],
+}
+```
+
+### /tweet/follow:id
 ```
 {
     users_tweet: [
