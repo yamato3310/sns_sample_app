@@ -5,9 +5,9 @@
 | :---- | :--- | :------- |
 | id    | name | password |
 
-| follow_users |         |           |
-| :----------- | :------ | :-------- |
-| id           | user_id | follow_id |
+| follows |         |             |
+| :------ | :------ | :---------- |
+| id      | user_id | followed_id |
 
 | user_tweets |         |       |
 | :---------- | :------ | :---- |
