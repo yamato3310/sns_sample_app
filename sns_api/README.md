@@ -13,9 +13,9 @@
 | :----- | :------ | :---- |
 | id     | user_id | tweet |
 
-| message_sent_user |         |              |         |
-| :---------------- | :------ | :----------- | :------ |
-| id                | user_id | sent_user_id | message |
+| sent_messages |         |              |         |
+| :------------ | :------ | :----------- | :------ |
+| id            | user_id | sent_user_id | message |
 
 ## エンドポイント
  | メソッド | エンドポイント       | 補足                                           |
