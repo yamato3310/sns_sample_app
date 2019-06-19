@@ -1,14 +1,9 @@
 class UsersController < ApplicationController
-  def show
+  def index
     render json: User.all
   end
 
-  def find
+  def show
     render json: User.find(params[:id])
-  end
-
-  def shwo_tweets
-    render json: User.joins(:tweets).select('users.*, tweets.*').all()
-    # render json: Tweet.all()
   end
 end
