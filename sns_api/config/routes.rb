@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
- get '/', to: 'users#show'
- get '/user/:id', to: 'users#find'
- get '/user_tweet', to: 'users#shwo_tweets'
+#  get '/', to: 'users#index'
+#  get '/user/:id', to: 'users#show'
+#  get '/user_tweet', to: 'users/tweets#index'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'users#index'
+
+  resources :users, shallow: true do 
+    resources :tweets, module: "users"
+  end
 end
