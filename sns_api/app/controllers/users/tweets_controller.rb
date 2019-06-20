@@ -1,5 +1,5 @@
 class Users::TweetsController < ApplicationController
-    def show
-        render json: User.joins(:tweets).select('users.*, tweets.*').all()
+    def index
+        render json: Tweet.where(user_id: params[:user_id])
     end
 end
