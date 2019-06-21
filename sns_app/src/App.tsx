@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from '../src/typescripts/screens/Home';
 
 const App = () => (
   <Router>
@@ -9,12 +10,6 @@ const App = () => (
   </Router>
 );
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-    <p>Welcome to ようこそ</p>
-  </div>
-);
 const About = () => (
   <div>
     <h2>About</h2>
