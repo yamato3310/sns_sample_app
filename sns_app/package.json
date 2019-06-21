@@ -53,7 +53,6 @@
     "singleQuote": true,
     "trailingComma": "es5",
     "semi": false,
-    "bracketSpacing": true,
-    "printWidth": 50
+    "bracketSpacing": true
   }
 }
