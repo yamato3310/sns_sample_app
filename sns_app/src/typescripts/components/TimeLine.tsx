@@ -19,15 +19,12 @@ export default class TimeLine extends React.Component<Props, States> {
   }
 
   public async componentDidMount() {
-    console.log('did')
     const timeLine = await getTimeLine(this.props.userId)
-    console.log(timeLine)
     this.setState({ timeLine })
   }
 
   public render() {
     if (this.state.timeLine === undefined) return null
-    console.log('render')
 
     return (
       <div>
