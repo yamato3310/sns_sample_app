@@ -1,3 +1,5 @@
-export const baseUrl = 'http://localhost:3001/';
+export const baseUrl = 'http://localhost:3001'
 
-export const defaultHeader = { 'Content-Type': 'application/json' };
+export const defaultHeader = {
+  'Content-Type': 'application/json',
+}

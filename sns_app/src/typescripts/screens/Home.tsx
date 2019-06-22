@@ -1,14 +1,10 @@
-import * as React from 'react';
+import * as React from 'react'
+import TimeLine from '../components/TimeLine'
 
 interface HomeProps {}
 
 export default class Home extends React.Component<HomeProps> {
   public render() {
-    return (
-      <div>
-        <h2>Home</h2>
-        <p>Welcome to ようこそ</p>
-      </div>
-    );
+    return <TimeLine userId={1} />
   }
 }
