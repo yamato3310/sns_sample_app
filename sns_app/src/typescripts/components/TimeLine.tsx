@@ -1,16 +1,13 @@
 import * as React from 'react'
 import { TimeLineType } from '../domains/home'
 import { getTimeLine } from '../services/timeLine'
+import { Tweet } from '../components/Tweet'
 
 interface Props {
-  userId: number
+  timeLine: TimeLineType[]
 }
 
-interface States {
-  timeLine?: TimeLineType[]
-}
-
-export default class TimeLine extends React.Component<Props, States> {
+export default class TimeLine extends React.Component<Props> {
   public constructor(props: Props) {
     super(props)
     this.state = {
@@ -18,18 +15,29 @@ export default class TimeLine extends React.Component<Props, States> {
     }
   }
 
-  public async componentDidMount() {
-    const timeLine = await getTimeLine(this.props.userId)
-    this.setState({ timeLine })
+  render() {
+    const tweets = this.props.timeLine.map(tweet => <Tweet tweet={tweet} />)
+    return { tweets }
   }
 
-  public render() {
-    if (this.state.timeLine === undefined) return null
+  // public async componentDidMount() {
+  //   const timeLine = await getTimeLine(this.props.userId)
+  //   this.setState({ timeLine })
+  // }
 
-    return (
-      <div>
-        <div>{this.state.timeLine[0].tweet}</div>
-      </div>
-    )
-  }
+  // public render() {
+  //   if (this.state.timeLine === undefined) return null
+
+  //   const tweets = this.tweetList(this.state.timeLine)
+  //   return <div>{tweets}</div>
+  // }
+
+  // private tweetList = (timeLine: TimeLineType[]) => {
+  //   const tweets:  = []
+  //   timeLine.forEach(tweet => {
+  //     tweets.push(<Tweet tweet={tweet} />)
+  //   })
+
+  //   return tweets
+  // }
 }
