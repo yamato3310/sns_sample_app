@@ -1,10 +1,13 @@
 import * as React from 'react'
-import TimeLine from '../components/TimeLine'
+import { TimeLine } from '../components/TimeLine'
+import { async } from 'q'
 
 interface HomeProps {}
 
-export default class Home extends React.Component<HomeProps> {
-  public render() {
-    return <TimeLine userId={1} />
-  }
+export const Home = () => {
+  return (
+    <React.Suspense fallback={<div>なう　ろーでぃんぐ</div>}>
+      <TimeLine userId={1} />
+    </React.Suspense>
+  )
 }
