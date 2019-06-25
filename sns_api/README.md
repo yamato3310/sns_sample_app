@@ -5,6 +5,10 @@
 | :---- | :--- | :------- | :-------- | :--------- |
 | id    | name | password | create_at | updated_at |
 
+| passwords |         |          |           |            |
+| :-------- | :------ | :------- | :-------- | :--------- |
+| id        | user_id | password | create_at | updated_at |
+
 | follows |         |             |           |            |
 | :------ | :------ | :---------- | :-------- | :--------- |
 | id      | user_id | followed_id | create_at | updated_at |
