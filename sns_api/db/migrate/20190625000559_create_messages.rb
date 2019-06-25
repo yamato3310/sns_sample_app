@@ -1,6 +1,6 @@
-class CreateSentMessages < ActiveRecord::Migration[5.1]
+class CreateMessages < ActiveRecord::Migration[5.1]
   def change
-    create_table :sent_messages do |t|
+    create_table :messages do |t|
       t.references :user, foreign_key: true
       t.references :sent_user, foreing_key: { to_table: :users }
       t.text :message
