@@ -1,13 +1,13 @@
 # sns サーバー仕様書
 
 ## DBスキーマ
-| users |      |          |           |            |
-| :---- | :--- | :------- | :-------- | :--------- |
-| id    | name | password | create_at | updated_at |
+| users |      |       |          |           |            |
+| :---- | :--- | :---- | :------- | :-------- | :--------- |
+| id    | name | email | password | create_at | updated_at |
 
-| passwords |         |          |           |            |
-| :-------- | :------ | :------- | :-------- | :--------- |
-| id        | user_id | password | create_at | updated_at |
+| passwords |         |                 |           |            |
+| :-------- | :------ | :-------------- | :-------- | :--------- |
+| id        | user_id | password_digest | create_at | updated_at |
 
 | follows |         |             |           |            |
 | :------ | :------ | :---------- | :-------- | :--------- |
