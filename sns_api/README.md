@@ -1,32 +1,36 @@
 # sns サーバー仕様書
 
 ## DBスキーマ
-| users |      |          |
-| :---- | :--- | :------- |
-| id    | name | password |
+| users |      |          |           |            |
+| :---- | :--- | :------- | :-------- | :--------- |
+| id    | name | password | create_at | updated_at |
 
-| follows |         |             |
-| :------ | :------ | :---------- |
-| id      | user_id | followed_id |
+| follows |         |             |           |            |
+| :------ | :------ | :---------- | :-------- | :--------- |
+| id      | user_id | followed_id | create_at | updated_at |
 
-| tweets |         |       |
-| :----- | :------ | :---- |
-| id     | user_id | tweet |
+| tweets |         |       |           |            |
+| :----- | :------ | :---- | :-------- | :--------- |
+| id     | user_id | tweet | create_at | updated_at |
 
-| sent_messages |         |              |         |
-| :------------ | :------ | :----------- | :------ |
-| id            | user_id | sent_user_id | message |
+| sent_messages |         |              |         |           |            |
+| :------------ | :------ | :----------- | :------ | :-------- | :--------- |
+| id            | user_id | sent_user_id | message | create_at | updated_at |
 
 ## エンドポイント
- | メソッド | エンドポイント       | 補足                                           |
- | :------- | :------------------- | :--------------------------------------------- |
- | GET      | /user/follow:user_id | フォローしているユーザーの情報を取得           |
- | GET      | /user:id             | 自分の情報を取得                               |
- | POST     | /user                | ユーザーの情報を登録                           |
- | POST     | /user:id             | ユーザーにダイレクトメッセージ                 |
- | POST     | /follow/user:id      | ユーザーをフォロー                             |
- | GET      | /tweet/follow:id     | 自分がフォローしているユーザーのツイートの表示 |
- | POST     | /tweet               | ツイートの投稿                                 |
+ | メソッド | エンドポイント           | 補足                                     |
+ | :------- | :----------------------- | :--------------------------------------- |
+ | GET      | /                        | トップページ                             |
+ | GET      | /users/:user_id/tweets   | ユーザーのツイートの取得                 |
+ | POST     | /users/:user_id/tweets   | ツイート                                 |
+ | GET      | /users/:user_id/follows  | ユーザーのフォローしているユーザーの取得 |
+ | POST     | /users/:user_id/follows  | ユーザーのフォロー                       |
+ | GET      | /users/:user_id/timeline | ユーザーのタイムラインの取得             |
+ | POST     | /users                   | ユーザー登録                             |
+ | GET      | /users                   | ユーザー一覧の取得                       |
+ | GET      | /users/:id               | ユーザーのプロフィールの取得             |
+ | PUT      | /users/:id               | ユーザーのプロフィールの編集             |
+ 
  
 
  ## 返却データ
