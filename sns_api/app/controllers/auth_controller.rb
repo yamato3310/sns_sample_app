@@ -1,4 +1,6 @@
 class AuthController < ApplicationController
+    require 'securerandom'
+
     def login
         res = Session.get_user(cookies[:token])
         if res.result == "OK" then
@@ -31,13 +33,18 @@ class AuthController < ApplicationController
     end
 
     def signin
-        user = User.create!(id: User.bcript(), name: params[:name], email: params: params[:email])
+        user = User.create!(id: SecureRandom.hex(10), name: params[:name], email: params: params[:email])
         session = Session.create!(user_id: user.id)
         cookies[:token] = session.token
-        password = Password.create!(
-            user_id: user.id,
-            password: params[:password],
-            password_confirmation: params[:password_confirmation]
-        )
+        begin
+            password = Password.create!(
+                user_id: user.id,
+                password: params[:password],
+                password_confirmation: params[:password_confirmation]
+            )
+            render status: 200, json: { result: "OK", user: user }
+        rescue => error
+            render status: 400, json: { result: "NG", error:  error }
+        end
     end
 end
