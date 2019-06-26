@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190625021356) do
+ActiveRecord::Schema.define(version: 20190626002041) do
 
   create_table "follows", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "user_id"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20190625021356) do
     t.index ["user_id"], name: "fk_rails_cac37af949"
   end
 
+  create_table "sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "user_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "fk_rails_758836b4f0"
+  end
+
   create_table "tweets", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "user_id"
     t.text "tweet"
@@ -59,5 +67,6 @@ ActiveRecord::Schema.define(version: 20190625021356) do
   add_foreign_key "messages", "users"
   add_foreign_key "messages", "users", column: "sent_user_id"
   add_foreign_key "passwords", "users"
+  add_foreign_key "sessions", "users"
   add_foreign_key "tweets", "users"
 end
