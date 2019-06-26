@@ -13,6 +13,8 @@ class AuthController < ApplicationController
         password = Password.find_by!(user_id: res.user.user_id)
         if password.authenticate(params[:password]) then
             res = User.get_user_on_email(params[:email])
+            session = Session.create!(user_id: res.user.id)
+            cookies[:token] = session.token
             render status: 200, json: res
         else
             render status: 400, json: {result: "NG", error: "ログインに失敗しました"}
@@ -33,7 +35,7 @@ class AuthController < ApplicationController
         session = Session.create!(user_id: user.id)
         cookies[:token] = session.token
         password = Password.create!(
-            user_id: user.is,
+            user_id: user.id,
             password: params[:password],
             password_confirmation: params[:password_confirmation]
         )

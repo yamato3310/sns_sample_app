@@ -7,45 +7,74 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!([
     {
+        id: "user1",
         name: "user1",
-        password: "0001"
+        email: "user1@temp.com"
     }, {
-         name: "user2",
-        password: "0002"
+        id: "user2",
+        name: "user2",
+        email: "user2@temp.com"
     }
 ])
 
 Follow.create!([
     {
-        user_id: 1,
-        followed_id: 2
+        id: "follow1",
+        user_id: "user1",
+        followed_id: "user2"
     }, {
-        user_id: 2,
-        followed_id: 1
+        id: "follow2",
+        user_id: "user2",
+        followed_id: "user1"
     }
 ])
 
-SentMessage.create!([
+Message.create!([
     {
-        user_id: 1,
-        sent_user_id: 2,
+        id: "message1",
+        user_id: "user1",
+        sent_user_id: "user2",
         message: "user1dayo"
     }, {
-        user_id: 2,
-        sent_user_id: 1,
+        id: "message2",
+        user_id: "user2",
+        sent_user_id: "user1",
         message: "user2dayo"
     }
 ])
 
 Tweet.create!([
     {
-        user_id: 1,
+        id: "tweet1",
+        user_id: "user1",
         tweet: "tweet1"
     }, {
-        user_id: 1,
+        id: "tweet2",
+        user_id: "user1",
         tweet: "tweet2"
     }, {
-        user_id: 2,
+        id: "tweet3",
+        user_id: "user2",
         tweet: "tweet1"
+    }
+])
+
+Session.create!([
+    {
+        user_id: "user1"
+    }, {
+        user_id: "user2"
+    }
+])
+
+Password.create!([
+    {
+        user_id: "user1",
+        password: "hogehoge",
+        password_confirmation: "hogehoge"
+    }, {
+        user_id: "user2",
+        password: "hugahuga",
+        password_confirmation: "hugahuga"
     }
 ])
