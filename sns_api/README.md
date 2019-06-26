@@ -9,6 +9,10 @@
 | :-------- | :------ | :-------------- | :-------- | :--------- |
 | id        | user_id | password_digest | create_at | updated_at |
 
+| sessions |         |       |           |            |
+| :------- | :------ | :---- | :-------- | :--------- |
+| id       | user_id | token | create_at | updated_at |
+
 | follows |         |             |           |            |
 | :------ | :------ | :---------- | :-------- | :--------- |
 | id      | user_id | followed_id | create_at | updated_at |
