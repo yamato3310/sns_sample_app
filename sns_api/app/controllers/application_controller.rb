@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
     def login_check 
         res = Session.get_user(cookies[:token])
         if res[:result] == "NG" then
-            return render status: 400, json: { result: "NG", error: "ログインをしていません" }
+            return render status: 400, json: res
         end
     end
 end
