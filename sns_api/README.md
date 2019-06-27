@@ -47,12 +47,14 @@
  ## API一覧
 ### POST /singin
 #### request body
+```
 {
     name: "yamato3310",                 #ユーザー名
     email: "bity0000@gn.iwasaki.ac.jp", #メールアドレス
     password: "password",               #パスワード
     password_confirmation: "password"   # 確認用パスワード
 }
+```
 #### response
 ```
 {
