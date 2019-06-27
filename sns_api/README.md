@@ -29,6 +29,9 @@
  | メソッド | エンドポイント           | 補足                                     |
  | :------- | :----------------------- | :--------------------------------------- |
  | GET      | /                        | トップページ                             |
+ | POST     | /signin                  | アカウント制作                           |
+ | POST     | /login                   | ログイン                                 |
+ | GET      | /logout                  | ログアウト                               |
  | GET      | /users/:user_id/tweets   | ユーザーのツイートの取得                 |
  | POST     | /users/:user_id/tweets   | ツイート                                 |
  | GET      | /users/:user_id/follows  | ユーザーのフォローしているユーザーの取得 |
@@ -41,14 +44,14 @@
  
  
 
- ## 返却データ
-### /singin
+ ## API一覧
+### POST /singin
 #### request body
 {
-    name: "yamato3310", #ユーザー名
+    name: "yamato3310",                 #ユーザー名
     email: "bity0000@gn.iwasaki.ac.jp", #メールアドレス
-    password: "0000", #パスワード
-    password_confirmation:  "0000" # 確認用パスワード
+    password: "password",               #パスワード
+    password_confirmation: "password"   # 確認用パスワード
 }
 #### response
 ```
