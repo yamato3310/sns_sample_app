@@ -33,7 +33,7 @@ class AuthController < ApplicationController
     end
 
     def signin
-        user = User.create!(id: SecureRandom.hex(10), name: params[:name], email: params: params[:email])
+        user = User.create!(id: SecureRandom.hex(10), name: params[:name], email: params[:email])
         session = Session.create!(user_id: user.id)
         cookies[:token] = session.token
         begin

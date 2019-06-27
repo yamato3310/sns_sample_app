@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>管理ページ</title>
+    <meta charset="UTF-8" />
+    <style>
+        form {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        signin
+        <form action="/signin" method="POST">
+            name: <input type="text" name="name"><br>
+            email: <input type="text" name="email"><br>
+            password: <input type="password" name="password"><br>
+            password_confirmation: <input type="password" name=":password_confirmation"><br>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+</body>
+
+</html>
