@@ -1,31 +1,28 @@
 class AuthController < ApplicationController
     require 'securerandom'
+    skip_before_action :login_check, only: %i(login signin)
 
     def login
-        res = Session.get_user(cookies[:token])
-        if res.result == "OK" then
-            render status: 200, json: user
-        end
-
         res = User.get_user_on_email(params[:email])
-        if res.result == "NG" then
-            render status: 400, json: res
+        if res[:result] == "NG" then
+            return render status: 400, json: res
         end
 
-        password = Password.find_by!(user_id: res.user.user_id)
+        password = Password.find_by!(user_id: res[:user].id)
         if password.authenticate(params[:password]) then
             res = User.get_user_on_email(params[:email])
-            session = Session.create!(user_id: res.user.id)
+            session = Session.create!(user_id: res[:user].id)
             cookies[:token] = session.token
-            render status: 200, json: res
+
+            return render status: 200, json: res
         else
-            render status: 400, json: {result: "NG", error: "ログインに失敗しました"}
+            return render status: 400, json: {result: "NG", error: "ログインに失敗しました"}
         end
     end
 
     def logout
         res = Session.delete_session(cookies[:token])
-        if res.result == "OK" then
+        if res[:result] == "OK" then
             render status: 200, json: res
         else
             render status: 400, json: res

@@ -4,9 +4,9 @@ class User < ApplicationRecord
     def self.get_user_on_email(email)
         begin
             user = find_by!(email: email)
-            { result: "OK", user: user }
+            return { result: "OK", user: user }
         rescue => error
-            { result: "NG", res: error }
+            return { result: "NG", res: "ログインをしてください" }
         end
     end
 end

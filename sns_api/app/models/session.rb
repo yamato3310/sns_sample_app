@@ -4,10 +4,10 @@ class Session < ApplicationRecord
     def self.get_user(token)
         begin
             session = find_by!(token: token)
-            user = User.find!(session.user_id)
-            { result: "OK", user: user }
+            user = User.find(session.user_id)
+            return { result: "OK", user: user }
         rescue => error
-            { result: "NG", error: error }
+            return { result: "NG", error: error }
         end
     end
 
@@ -18,7 +18,7 @@ class Session < ApplicationRecord
             session.save!
             { result: "OK" }
         rescue => error
-            { result: "NG", res: error }
+            { result: "NG", error: "ログインしていません" }
         end
     end
 end

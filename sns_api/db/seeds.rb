@@ -61,9 +61,9 @@ Tweet.create!([
 
 Session.create!([
     {
-        user_id: "user1"
+        user_id: nil
     }, {
-        user_id: "user2"
+        user_id: nil
     }
 ])
 
