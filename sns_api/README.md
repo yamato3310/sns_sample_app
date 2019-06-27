@@ -42,57 +42,24 @@
  
 
  ## 返却データ
-### /user:id
+### /singin
+#### request body
+{
+    name: "yamato3310", #ユーザー名
+    email: "bity0000@gn.iwasaki.ac.jp", #メールアドレス
+    password: "0000", #パスワード
+    password_confirmation:  "0000" # 確認用パスワード
+}
+#### response
 ```
 {
-    user_id: 1,
-    name: hogehoge,
-    sent_message: [
-        {
-            id: 1,
-            user_id: 2,
-            message: huga
-        }, {
-            id: 2,
-            user_id: 2,
-            message: hugahuga
-        }
-    ]
+    "result": "OK",
+    "user": {
+        "id": "d0305c7675e62a8ee0b0",
+        "name": "yamato3310",
+        "email": "bity0000@gn.iwasaki.ac.jp",
+        "created_at": "2019-06-27T01:46:50.000Z",
+        "updated_at": "2019-06-27T01:46:50.000Z"
+    }
 }
 ```
-
-### /user/follow:user_id
-```
-{
-    id: 1,
-    name: hoge,
-    follow_users:[
-        {
-            id: 2,
-            name: hoge
-        }, {
-            id: 2,
-            name: hoge
-        }
-    ],
-}
-```
-
-### /tweet/follow:id
-```
-{
-    users_tweet: [
-        {
-            id: 1,
-            user_id: 1,
-            tweet: huga
-        }, {
-            id: 2,
-            user_id: 1,
-            tweet: hugahuga
-        }
-    ]
-}
-```
-
-### 
