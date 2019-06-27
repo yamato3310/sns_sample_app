@@ -45,6 +45,12 @@
  
 
  ## API一覧
+基本的に異常系は
+```
+{ result: "NG", error: "<NG理由>" }
+```
+とする
+
 ### POST /singin
 #### request body
 ```
