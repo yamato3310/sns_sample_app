@@ -18,7 +18,7 @@ class Session < ApplicationRecord
             session.save!
             { result: "OK" }
         rescue => error
-            { result: "NG", error: "ログインしていません" }
+            { result: "NG", error: "ログインをしていません" }
         end
     end
 end
