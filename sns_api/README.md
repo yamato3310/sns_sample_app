@@ -74,3 +74,24 @@
     }
 }
 ```
+
+## GET /users/:user_id/tweets
+### response
+```
+[
+    {
+        "id": "tweet1",
+        "user_id": "user1",
+        "tweet": "tweet1",
+        "created_at": "2019-07-01T08:20:17.000Z",
+        "updated_at": "2019-07-01T08:20:17.000Z"
+    },
+    {
+        "id": "tweet2",
+        "user_id": "user1",
+        "tweet": "tweet2",
+        "created_at": "2019-07-01T08:20:17.000Z",
+        "updated_at": "2019-07-01T08:20:17.000Z"
+    }
+]
+```
