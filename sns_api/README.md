@@ -148,3 +148,20 @@
     }
 }
 ```
+
+### GET /users/:user_id/follows
+### response
+```
+{
+    "result": "OK",
+    "users": [
+        {
+            "id": "user2",
+            "name": "user2",
+            "email": "user2@temp.com",
+            "created_at": "2019-07-01T08:20:17.000Z",
+            "updated_at": "2019-07-01T08:20:17.000Z"
+        }
+    ]
+}
+```
