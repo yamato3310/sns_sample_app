@@ -7,7 +7,7 @@ class Session < ApplicationRecord
             user = User.find(session.user_id)
             return { result: "OK", user: user }
         rescue => error
-            return { result: "NG", error: "ログインをしていません" }
+            return { result: "NG", error: "please log in" }
         end
     end
 
@@ -18,7 +18,7 @@ class Session < ApplicationRecord
             session.save!
             { result: "OK" }
         rescue => error
-            { result: "NG", error: "ログインをしていません" }
+            { result: "NG", error: "please log in" }
         end
     end
 end
