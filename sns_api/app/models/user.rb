@@ -10,7 +10,7 @@ class User < ApplicationRecord
             user = find_by!(email: email)
             return { result: "OK", user: user }
         rescue => error
-            return { result: "NG", res: "please log in" }
+            return { result: "NG", res: "email address or user name is wrong" }
         end
     end
 end

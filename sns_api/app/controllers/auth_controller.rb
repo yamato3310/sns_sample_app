@@ -16,7 +16,7 @@ class AuthController < ApplicationController
 
             return render status: 200, json: res
         else
-            return render status: 400, json: {result: "NG", error: "ログインに失敗しました"}
+            return render status: 400, json: {result: "NG", error: "Login failed"}
         end
     end
 
