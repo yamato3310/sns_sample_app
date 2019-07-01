@@ -28,7 +28,7 @@
 ## エンドポイント
  | メソッド | エンドポイント           | 補足                                     |
  | :------- | :----------------------- | :--------------------------------------- |
- | GET      | /                        | トップページ                             |
+ | GET      | /                        | 管理画面                                 |
  | POST     | /signin                  | アカウント制作                           |
  | POST     | /login                   | ログイン                                 |
  | GET      | /logout                  | ログアウト                               |
@@ -58,7 +58,7 @@
     name: "yamato3310",                 #ユーザー名
     email: "bity0000@gn.iwasaki.ac.jp", #メールアドレス
     password: "password",               #パスワード
-    password_confirmation: "password"   # 確認用パスワード
+    password_confirmation: "password"   #確認用パスワード
 }
 ```
 #### response
@@ -72,6 +72,38 @@
         "created_at": "2019-06-27T01:46:50.000Z",
         "updated_at": "2019-06-27T01:46:50.000Z"
     }
+}
+```
+
+### POST /login
+#### request body
+```
+{
+    "name": "user1",                    #ユーザー名
+    "email": "user1@temp.com",          #メールアドレス
+    "password": "hogehoge",             #パスワード
+    "password_confirmation": "hogehoge" #確認用パスワード
+}
+```
+#### response
+```
+{
+    "result": "OK",
+    "user": {
+        "id": "user1",
+        "name": "user1",
+        "email": "user1@temp.com",
+        "created_at": "2019-07-01T08:20:17.000Z",
+        "updated_at": "2019-07-01T08:20:17.000Z"
+    }
+}
+```
+
+### GET /logout
+#### response
+```
+{
+    "result": "OK"
 }
 ```
 
