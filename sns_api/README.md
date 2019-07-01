@@ -75,8 +75,8 @@
 }
 ```
 
-## GET /users/:user_id/tweets
-### response
+### GET /users/:user_id/tweets
+#### response
 ```
 [
     {
@@ -94,4 +94,25 @@
         "updated_at": "2019-07-01T08:20:17.000Z"
     }
 ]
+```
+
+### POST /users/:user_id/tweets
+#### request body
+```
+{
+    tweet: "うぇぶたのしいよ" #ツイート内容
+}
+```
+#### response
+```
+{
+    "result": "OK",
+    "tweets": {
+        "id": "737443d2f5d45120c2ae",
+        "user_id": "user1",
+        "tweet": "うぇぶたのしいよ",
+        "created_at": "2019-07-01T10:37:40.000Z",
+        "updated_at": "2019-07-01T10:37:40.000Z"
+    }
+}
 ```
