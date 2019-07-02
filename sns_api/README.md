@@ -60,6 +60,7 @@
     password_confirmation: "password"   #確認用パスワード
 }
 ```
+
 #### response
 ```
 {
@@ -84,6 +85,7 @@
     "password_confirmation": "hogehoge" #確認用パスワード
 }
 ```
+
 #### response
 ```
 {
@@ -134,6 +136,7 @@
     tweet: "うぇぶたのしいよ" #ツイート内容
 }
 ```
+
 #### response
 ```
 {
@@ -164,6 +167,7 @@
     ]
 }
 ```
+
 ### POST /users/:user_id/follows
 #### request body
 ```
@@ -171,6 +175,7 @@
     followed_id: "user2" #フォローするユーザー
 }
 ```
+
 #### response
 ```
 {
@@ -186,6 +191,7 @@
     ]
 }
 ```
+
 ### GET /users/:user_id/timeline
 #### response
 ```
@@ -265,7 +271,7 @@
 }
 ```
 
-### response
+#### response
 ```
 {
     "result":"OK",
