@@ -47,8 +47,29 @@
         </form>
     </div>
     <div>
-        <a href="/logout">ログアウト</a>
+        プロフィール変更
+        <form action="/users/user1" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            name: <input type="text" name="name"><br>
+            email: <input type="text" name="email"><br>
+        </form>
+        <button onclick="update()">送信</button>
     </div>
+
+    <script>
+        const body = { name: "eeee", email: "hogehoge@gmail.com" }
+
+        const update = async () => {
+            console.log("put!")
+            await fetch("/users/user1", {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(json => console.log(JSON.stringify(json)))
+        }
+    </script>
 </body>
 
 </html>

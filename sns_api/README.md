@@ -37,7 +37,6 @@
  | GET      | /users/:user_id/follows  | ユーザーのフォローしているユーザーの取得 |
  | POST     | /users/:user_id/follows  | ユーザーのフォロー                       |
  | GET      | /users/:user_id/timeline | ユーザーのタイムラインの取得             |
- | POST     | /users                   | ユーザー登録                             |
  | GET      | /users                   | ユーザー一覧の取得                       |
  | GET      | /users/:id               | ユーザーのプロフィールの取得             |
  | PUT      | /users/:id               | ユーザーのプロフィールの編集             |
@@ -215,5 +214,67 @@
             "updated_at": "2019-07-02T08:18:13.000Z"
         }
     ]
+}
+```
+
+### GET /users
+#### response
+```
+{
+    "result": "OK",
+    "users": [
+        {
+            "id": "user1",
+            "name": "eeee",
+            "email": "hogehoge@gmail.com",
+            "created_at": "2019-07-02T12:14:24.000Z",
+            "updated_at": "2019-07-02T12:14:43.000Z"
+        },
+        {
+            "id": "user2",
+            "name": "user2",
+            "email": "user2@temp.com",
+            "created_at": "2019-07-02T12:14:24.000Z",
+            "updated_at": "2019-07-02T12:14:24.000Z"
+        }
+    ]
+}
+```
+
+### GET /users/:id
+#### response
+```
+{
+    "result": "OK",
+    "user": {
+        "id": "user1",
+        "name": "user1",
+        "email": "user1@temp.com",
+        "created_at": "2019-07-02T12:05:47.000Z",
+        "updated_at": "2019-07-02T12:05:47.000Z"
+    }
+}
+```
+
+### PUT /users/:id
+#### request body
+```
+{ 
+    name: "eeee",               #変更後のユーザー名
+    email: "hogehoge@gmail.com" #変更後のメールアドレス
+}
+```
+
+### response
+```
+{
+    "result":"OK",
+    "user": {
+        "id":"user1",
+        "name":"eeee",
+        "email":"hogehoge@gmail.com",
+        "created_at":"2019-07-02T12:14:24.000Z",
+        "updated_at":"2019-07-02T12:14:43.000Z"
+    }
 }
 ```
