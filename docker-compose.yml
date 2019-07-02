@@ -1,12 +1,12 @@
 version: "3"
 services:
   db:
-    image: mysql:5.7
+    image: postgres:10.1
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+      POSTGRES_ROOT_PASSWORD: password
+      POSTGRES_USER: postgres
     ports:
-      - "3306:3306"
+      - "5432:5432"
 
   api:
     build: ./sns_api
