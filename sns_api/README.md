@@ -165,3 +165,25 @@
     ]
 }
 ```
+### POST /users/:user_id/follows
+#### request body
+```
+{
+    followed_id: "user2" #フォローするユーザー
+}
+```
+#### response
+```
+{
+    "result": "OK",
+    "users": [
+        {
+            "id": "user1",
+            "name": "user1",
+            "email": "user1@temp.com",
+            "created_at": "2019-07-02T08:18:12.000Z",
+            "updated_at": "2019-07-02T08:18:12.000Z"
+        }
+    ]
+}
+```
