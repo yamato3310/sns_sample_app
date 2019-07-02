@@ -187,3 +187,33 @@
     ]
 }
 ```
+### GET /users/:user_id/timeline
+#### response
+```
+{
+    "result": "OK",
+    "timeline": [
+        {
+            "id": "tweet1",
+            "user_id": "user1",
+            "tweet": "tweet1",
+            "created_at": "2019-07-02T08:18:13.000Z",
+            "updated_at": "2019-07-02T08:18:13.000Z"
+        },
+        {
+            "id": "tweet2",
+            "user_id": "user1",
+            "tweet": "tweet2",
+            "created_at": "2019-07-02T08:18:13.000Z",
+            "updated_at": "2019-07-02T08:18:13.000Z"
+        },
+        {
+            "id": "tweet3",
+            "user_id": "user2",
+            "tweet": "tweet1",
+            "created_at": "2019-07-02T08:18:13.000Z",
+            "updated_at": "2019-07-02T08:18:13.000Z"
+        }
+    ]
+}
+```
