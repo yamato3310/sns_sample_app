@@ -3,5 +3,13 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "api",
   "workspaceFolder": "/app_name",
-  "extensions": []
+  "extensions": [
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "ms-ceintl.vscode-language-pack-ja",
+    "emilast.logfilehighlighter",
+    "ibm.output-colorizer",
+    "ionutvmi.path-autocomplete",
+    "rebornix.ruby"
+  ]
 }

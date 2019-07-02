@@ -7,4 +7,14 @@ class Users::FollowsController < ApplicationController
             render status: 400, json: { result: "NG", error: error }
         end
     end
+
+    def create
+        begin
+            
+        rescue => exception
+            
+        else
+            
+        end
+    end
 end

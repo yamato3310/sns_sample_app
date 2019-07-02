@@ -150,7 +150,7 @@
 ```
 
 ### GET /users/:user_id/follows
-### response
+#### response
 ```
 {
     "result": "OK",
