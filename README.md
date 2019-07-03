@@ -1,24 +1,286 @@
-# Rails Reactを使って簡単なSNSアプリを作ってみる
+# sns サーバー仕様書
 
-## 目的
-- 今後使っていくであろうRails Reactの基本的なアプリの作り方を覚える
-- 時間があまりないので最低でもサーバーサイドだけは完成させる
+## DBスキーマ
+| users |      |       |           |            |
+| :---- | :--- | :---- | :-------- | :--------- |
+| id    | name | email | create_at | updated_at |
 
-## 機能
-ツイッターみたいなsnsアプリの制作
+| passwords |         |                 |           |            |
+| :-------- | :------ | :-------------- | :-------- | :--------- |
+| id        | user_id | password_digest | create_at | updated_at |
 
-- ツイート
-- フォロー
-- フォローユーザーのツイートの表示
-- 相互フォローのユーザーにダイレクトメッセージ
+| sessions |         |       |           |            |
+| :------- | :------ | :---- | :-------- | :--------- |
+| id       | user_id | token | create_at | updated_at |
 
-の機能を実装したいが最低限
+| follows |         |             |           |            |
+| :------ | :------ | :---------- | :-------- | :--------- |
+| id      | user_id | followed_id | create_at | updated_at |
 
-- フォロー
-- フォローユーザーのツイートの表示
+| tweets |         |       |           |            |
+| :----- | :------ | :---- | :-------- | :--------- |
+| id     | user_id | tweet | create_at | updated_at |
 
-ここまでは終わらせるようにする
+| sent_messages |         |              |         |           |            |
+| :------------ | :------ | :----------- | :------ | :-------- | :--------- |
+| id            | user_id | sent_user_id | message | create_at | updated_at |
 
-## 期限
-- 6/12から選考課題があるのでひとまずの期限はそこにする
-- 完成しなければ空いた時間で少しずづ進めるよにする
+## エンドポイント
+ | メソッド | エンドポイント           | 補足                                     |
+ | :------- | :----------------------- | :--------------------------------------- |
+ | GET      | /                        | 管理画面                                 |
+ | POST     | /signin                  | アカウント制作                           |
+ | POST     | /login                   | ログイン                                 |
+ | GET      | /logout                  | ログアウト                               |
+ | GET      | /users/:user_id/tweets   | ユーザーのツイートの取得                 |
+ | POST     | /users/:user_id/tweets   | ツイート                                 |
+ | GET      | /users/:user_id/follows  | ユーザーのフォローしているユーザーの取得 |
+ | POST     | /users/:user_id/follows  | ユーザーのフォロー                       |
+ | GET      | /users/:user_id/timeline | ユーザーのタイムラインの取得             |
+ | GET      | /users                   | ユーザー一覧の取得                       |
+ | GET      | /users/:id               | ユーザーのプロフィールの取得             |
+ | PUT      | /users/:id               | ユーザーのプロフィールの編集             |
+ 
+ 
+
+ ## API一覧
+基本的に異常系は
+```
+{ result: "NG", error: "<NG理由>" }
+```
+とする
+
+### POST /singin
+#### request body
+```
+{
+    name: "yamato3310",                 #ユーザー名
+    email: "bity0000@gn.iwasaki.ac.jp", #メールアドレス
+    password: "password",               #パスワード
+    password_confirmation: "password"   #確認用パスワード
+}
+```
+
+#### response
+```
+{
+    "result": "OK",
+    "user": {
+        "id": "d0305c7675e62a8ee0b0",
+        "name": "yamato3310",
+        "email": "bity0000@gn.iwasaki.ac.jp",
+        "created_at": "2019-06-27T01:46:50.000Z",
+        "updated_at": "2019-06-27T01:46:50.000Z"
+    }
+}
+```
+
+### POST /login
+#### request body
+```
+{
+    "name": "user1",                    #ユーザー名
+    "email": "user1@temp.com",          #メールアドレス
+    "password": "hogehoge",             #パスワード
+    "password_confirmation": "hogehoge" #確認用パスワード
+}
+```
+
+#### response
+```
+{
+    "result": "OK",
+    "user": {
+        "id": "user1",
+        "name": "user1",
+        "email": "user1@temp.com",
+        "created_at": "2019-07-01T08:20:17.000Z",
+        "updated_at": "2019-07-01T08:20:17.000Z"
+    }
+}
+```
+
+### GET /logout
+#### response
+```
+{
+    "result": "OK"
+}
+```
+
+### GET /users/:user_id/tweets
+#### response
+```
+[
+    {
+        "id": "tweet1",
+        "user_id": "user1",
+        "tweet": "tweet1",
+        "created_at": "2019-07-01T08:20:17.000Z",
+        "updated_at": "2019-07-01T08:20:17.000Z"
+    },
+    {
+        "id": "tweet2",
+        "user_id": "user1",
+        "tweet": "tweet2",
+        "created_at": "2019-07-01T08:20:17.000Z",
+        "updated_at": "2019-07-01T08:20:17.000Z"
+    }
+]
+```
+
+### POST /users/:user_id/tweets
+#### request body
+```
+{
+    tweet: "うぇぶたのしいよ" #ツイート内容
+}
+```
+
+#### response
+```
+{
+    "result": "OK",
+    "tweets": {
+        "id": "737443d2f5d45120c2ae",
+        "user_id": "user1",
+        "tweet": "うぇぶたのしいよ",
+        "created_at": "2019-07-01T10:37:40.000Z",
+        "updated_at": "2019-07-01T10:37:40.000Z"
+    }
+}
+```
+
+### GET /users/:user_id/follows
+#### response
+```
+{
+    "result": "OK",
+    "users": [
+        {
+            "id": "user2",
+            "name": "user2",
+            "email": "user2@temp.com",
+            "created_at": "2019-07-01T08:20:17.000Z",
+            "updated_at": "2019-07-01T08:20:17.000Z"
+        }
+    ]
+}
+```
+
+### POST /users/:user_id/follows
+#### request body
+```
+{
+    followed_id: "user2" #フォローするユーザー
+}
+```
+
+#### response
+```
+{
+    "result": "OK",
+    "users": [
+        {
+            "id": "user1",
+            "name": "user1",
+            "email": "user1@temp.com",
+            "created_at": "2019-07-02T08:18:12.000Z",
+            "updated_at": "2019-07-02T08:18:12.000Z"
+        }
+    ]
+}
+```
+
+### GET /users/:user_id/timeline
+#### response
+```
+{
+    "result": "OK",
+    "timeline": [
+        {
+            "id": "tweet1",
+            "user_id": "user1",
+            "tweet": "tweet1",
+            "created_at": "2019-07-02T08:18:13.000Z",
+            "updated_at": "2019-07-02T08:18:13.000Z"
+        },
+        {
+            "id": "tweet2",
+            "user_id": "user1",
+            "tweet": "tweet2",
+            "created_at": "2019-07-02T08:18:13.000Z",
+            "updated_at": "2019-07-02T08:18:13.000Z"
+        },
+        {
+            "id": "tweet3",
+            "user_id": "user2",
+            "tweet": "tweet1",
+            "created_at": "2019-07-02T08:18:13.000Z",
+            "updated_at": "2019-07-02T08:18:13.000Z"
+        }
+    ]
+}
+```
+
+### GET /users
+#### response
+```
+{
+    "result": "OK",
+    "users": [
+        {
+            "id": "user1",
+            "name": "eeee",
+            "email": "hogehoge@gmail.com",
+            "created_at": "2019-07-02T12:14:24.000Z",
+            "updated_at": "2019-07-02T12:14:43.000Z"
+        },
+        {
+            "id": "user2",
+            "name": "user2",
+            "email": "user2@temp.com",
+            "created_at": "2019-07-02T12:14:24.000Z",
+            "updated_at": "2019-07-02T12:14:24.000Z"
+        }
+    ]
+}
+```
+
+### GET /users/:id
+#### response
+```
+{
+    "result": "OK",
+    "user": {
+        "id": "user1",
+        "name": "user1",
+        "email": "user1@temp.com",
+        "created_at": "2019-07-02T12:05:47.000Z",
+        "updated_at": "2019-07-02T12:05:47.000Z"
+    }
+}
+```
+
+### PUT /users/:id
+#### request body
+```
+{ 
+    name: "eeee",               #変更後のユーザー名
+    email: "hogehoge@gmail.com" #変更後のメールアドレス
+}
+```
+
+#### response
+```
+{
+    "result":"OK",
+    "user": {
+        "id":"user1",
+        "name":"eeee",
+        "email":"hogehoge@gmail.com",
+        "created_at":"2019-07-02T12:14:24.000Z",
+        "updated_at":"2019-07-02T12:14:43.000Z"
+    }
+}
+```
