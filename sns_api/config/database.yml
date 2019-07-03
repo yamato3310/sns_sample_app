@@ -13,8 +13,8 @@ default: &default
   adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: ENV['USERNAME']
-  password: ENV['PASSWORD'] # docker-compose.ymlのMYSQL_ROOT_PASSWORD
+  username: postgres
+  password: ENV['LOGIN_PASSWORD'] # docker-compose.ymlのMYSQL_ROOT_PASSWORD
   host: db # docker-compose.ymlのservice名
 
 development:
