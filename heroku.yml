@@ -1,8 +1,8 @@
 build:
   languages:
     - ruby
-  packages:
-    - imagemagick
+  docker:
+    api: ./sns_api
   config:
     RAILS_ENV: development
 release:
