@@ -1,6 +1,4 @@
 build:
-  languages:
-    - ruby
   docker:
     api: ./sns_api
   config:
