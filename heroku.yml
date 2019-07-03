@@ -1,6 +1,6 @@
 build:
   docker:
-    api: api
+    api: sns_api/Dockerfile
   config:
     RAILS_ENV: development
 release:
