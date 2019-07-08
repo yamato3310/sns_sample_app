@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>管理ページ</title>
+    <meta charset="UTF-8" />
+    <style>
+        form {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        signin
+        <form action="/signin" method="POST">
+            name: <input type="text" name="name"><br>
+            email: <input type="text" name="email"><br>
+            password: <input type="password" name="password"><br>
+            password_confirmation: <input type="password" name=":password_confirmation"><br>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+    <div>
+        login
+        <form action="/login" method="POST">
+            name: <input type="text" name="name"><br>
+            email: <input type="text" name="email"><br>
+            password: <input type="password" name="password"><br>
+            password_confirmation: <input type="password" name=":password_confirmation"><br>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+    <div>
+        tweet
+        <form action="/users/user1/tweets" method="POST">
+            tweet: <input type="text" name="tweet"><br>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+    <div>
+        follow
+        <form action="/users/user1/follows" method="POST">
+            followed_id: <input type="text" name="followed_id"><br>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+    <div>
+        プロフィール変更
+        <form action="/users/user1" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            name: <input type="text" name="name"><br>
+            email: <input type="text" name="email"><br>
+        </form>
+        <button onclick="update()">送信</button>
+    </div>
+
+    <script>
+        const body = { name: "eeee", email: "hogehoge@gmail.com" }
+
+        const update = async () => {
+            console.log("put!")
+            await fetch("/users/user1", {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(json => console.log(JSON.stringify(json)))
+        }
+    </script>
+</body>
+
+</html>
